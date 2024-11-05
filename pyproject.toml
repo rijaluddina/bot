@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "cli-bot"
+version = "0.1.0"
+description = ""
+authors = ["rijaluddina <rijaluddin.alazmi@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+groq = "^0.11.0"
+python-dotenv = "^1.0.1"
+pygments = "^2.18.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
