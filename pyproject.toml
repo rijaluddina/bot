@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cli-bot"
+name = "cli"
 version = "0.1.0"
 description = ""
 authors = ["rijaluddina <rijaluddin.alazmi@outlook.com>"]
@@ -11,6 +11,8 @@ groq = "^0.11.0"
 python-dotenv = "^1.0.1"
 pygments = "^2.18.0"
 
+[tool.poetry.scripts]
+project = "cli.__main__:main"
 
 [build-system]
 requires = ["poetry-core"]
