@@ -1,4 +1,4 @@
-from pygments.lexers import get_lexer_by_name, guess_lexer, PythonLexer
+from pygments.lexers import get_lexer_by_name, guess_lexer, PythonLexer, TextLexer
 from pygments.formatters import TerminalFormatter
 from pygments import highlight
 from dotenv import load_dotenv
@@ -69,6 +69,14 @@ def log_content(content):
                 lexer = get_lexer_by_name(lang) if lang else guess_lexer(code)
             except:
                 lexer = PythonLexer()
+            highlighted_code = highlight(code, lexer, TerminalFormatter())
+            print(highlighted_code, end="")
+        elif part.startswith("`") and part.endswith("`"):
+            code = part.strip("`")
+            try:
+                lexer = guess_lexer(code)
+            except:
+                lexer = TextLexer()
             highlighted_code = highlight(code, lexer, TerminalFormatter())
             print(highlighted_code, end="")
         else:
