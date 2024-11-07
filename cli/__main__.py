@@ -24,7 +24,7 @@ def configure_settings():
     global assistant_prompt, model_name, temperature_setting
     while True:
         menu = input(
-            f"menu:\n\n1. Assistant prompt: {assistant_prompt}.\n2. Model: {model_name}.\n3. Temperature: {temperature_setting}.\n\nSilahkan pilih: "
+            f"\nmenu:\n\n1. Assistant prompt: {assistant_prompt}.\n2. Model: {model_name}.\n3. Temperature: {temperature_setting}.\n\nSilahkan pilih: "
         )
 
         if menu == "1":
@@ -32,7 +32,13 @@ def configure_settings():
         elif menu == "2":
             model_name = input("Masukkan model baru: ")
         elif menu == "3":
-            temperature_setting = float(input("Masukkan temperature baru: "))
+            while True:
+                try:
+                    temperature_setting = int(input("Masukkan temperature baru: "))
+                    break
+                except ValueError:
+                    print(f"{RED}temperature harus berupa angka!{NC}")
+                    continue
         else:
             return
 
@@ -85,7 +91,7 @@ def log_content(content):
 
 
 def main():
-    global assistant_prompt, model_name, temperature_setting
+    global messages, model_name, temperature_setting
     client = Groq()
 
     while True:
