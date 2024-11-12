@@ -6,7 +6,7 @@ authors = ["rijaluddina <rijaluddin.alazmi@outlook.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<=3.12"
+python = ">=3.8,<4.0"
 groq = "^0.11.0"
 python-dotenv = "^1.0.1"
 pygments = "^2.18.0"
