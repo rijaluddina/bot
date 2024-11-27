@@ -6,13 +6,18 @@ authors = ["rijaluddina <rijaluddin.alazmi@outlook.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-groq = "^0.11.0"
+python = ">=3.9,<4.0"
 python-dotenv = "^1.0.1"
-pygments = "^2.18.0"
+langgraph = "^0.2.53"
+langchain-groq = "^0.2.1"
+langchain-core = "^0.3.21"
+connect-markdown-renderer = "^3.0.0"
 
 [tool.poetry.scripts]
 project = "cli.__main__:main"
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.1.1"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

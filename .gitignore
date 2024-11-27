@@ -6,6 +6,13 @@ dist/
 wheels/
 *.egg-info
 
+# Ignore Jupyter checkpoint files
+.ipynb_checkpoints/
+
+# Optional: Ignore other temporary files
+*.log
+*.tmp
+
 # Virtual environments
 .env
 .venv
