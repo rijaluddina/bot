@@ -15,7 +15,10 @@ prompt_template = ChatPromptTemplate.from_messages(
             "system",
             """
             You are a helpful assistant. Answer all questions to the best of your ability in {language}.
-            All answer code blocks must include their syntax.
+            All answer code blocks must include the syntax, for example:
+                ```python
+                print("hello world")
+                ```
             """,
         ),
         MessagesPlaceholder(variable_name="messages"),

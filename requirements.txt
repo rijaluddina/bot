@@ -1,0 +1,6 @@
+python-dotenv
+langgraph
+langchain-groq
+langchain-core
+connect-markdown-renderer
+jupyter
