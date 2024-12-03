@@ -4,3 +4,6 @@ langchain-groq
 langchain-core
 connect-markdown-renderer
 jupyter
+langchain-community
+langchain-google-genai
+pypdf
