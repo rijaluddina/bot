@@ -15,7 +15,7 @@ prompt_template = ChatPromptTemplate.from_messages(
             "system",
             """
             You are a helpful assistant. Answer all questions to the best of your ability in {language}.
-            All answer code blocks must include the syntax, for example:
+            If you are required to answer with program code, make sure it is in the form of a code block and accompanied by the correct syntax, for example:
                 ```python
                 print("hello world")
                 ```
@@ -25,8 +25,6 @@ prompt_template = ChatPromptTemplate.from_messages(
     ]
 )
 model = ChatGroq(model="llama3-8b-8192")
-
-model.invoke([HumanMessage(content="Hi! I'm Bob")])
 
 
 class State(TypedDict):
@@ -54,6 +52,12 @@ config = {"configurable": {"thread_id": "uuid"}}
 while True:
     query = input("prompt: ")
     language = "indonesian"
+
+    if query.strip().upper() == "Q":
+        break
+    if len(query.strip()) < 3:
+        print("Messages must be a minimum of 3 characters.")
+        continue
 
     input_messages = [HumanMessage(query)]
     output = app.invoke({"messages": input_messages, "language": language}, config)
