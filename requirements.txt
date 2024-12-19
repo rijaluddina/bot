@@ -11,3 +11,6 @@ python-dotenv
 tavily-python
 transformers
 wikipedia
+tiktoken
+matplotlib
+networkx
