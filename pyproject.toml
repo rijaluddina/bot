@@ -21,6 +21,7 @@ dependencies = [
     "matplotlib>=3.10.0",
     "networkx>=3.4.2",
     "prompt-toolkit>=3.0.48",
+    "langchain-chroma>=0.1.4",
 ]
 
 [dependency-groups]

@@ -12,9 +12,9 @@ from typing import Sequence
 
 load_dotenv()
 
-GREEN = "\033[0;32m"
-BLUE = "\033[0;34m"
-NC = "\033[0m"
+COLOR_GREEN = "\033[0;32m"
+COLOR_BLUE = "\033[0;34m"
+COLOR_NC = "\033[0m"
 
 prompt_template = ChatPromptTemplate.from_messages(
     [
@@ -41,16 +41,20 @@ class State(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     language: str
 
-
 workflow = StateGraph(state_schema=State)
 
+def create_prompt(state: State) -> str:
+    return prompt_template.invoke(state)
 
-def call_model(state: State):
-    prompt = prompt_template.invoke(state)
-    response = model.invoke(prompt)
+def invoke_model(prompt: str) -> dict:
+    return model.invoke(prompt)
+
+def call_model(state: State) -> dict:
+    prompt = create_prompt(state)
+    response = invoke_model(prompt)
     return {"messages": response}
 
-def prompt_continuation(width, line_number, wrap_count):
+def prompt_continuation(width:int, line_number:int, wrap_count:int) -> str:
     if wrap_count > 0:
         return " " * (width - 3) + "-> "
     else:
@@ -66,7 +70,7 @@ app = workflow.compile(checkpointer=memory)
 config = {"configurable": {"thread_id": "uuid"}}
 
 while True:
-    print(f"{BLUE}###PROMPT :{NC}")
+    print(f"{COLOR_BLUE}###PROMPT :{COLOR_NC}")
     query = prompt(
         HTML("<strong>1.</strong>"),
         multiline=True,
@@ -81,7 +85,7 @@ while True:
         continue
 
     input_messages = [HumanMessage(query)]
-    output = app.invoke({"messages": input_messages, "language": language}, config)
+    output = app.invoke({"messages": input_messages, "language": language}, config=config)
     json = output["messages"][-1]
-    print(f"{GREEN}###ANSWER :{NC}")
+    print(f"{COLOR_GREEN}###ANSWER :{COLOR_NC}")
     print(render(json.content))
